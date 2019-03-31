@@ -9,6 +9,7 @@ import {
 } from './types';
 
 export const emailChanged = (text) => {
+
   return {
     type: EMAIL_CHANGED,
     payload: text
@@ -38,15 +39,15 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-// const loginUserFail = (dispatch) => {
-//   dispatch({ type: LOGIN_USER_FAIL });
-// };
-//
-// const loginUserSuccess = (dispatch, user) => {
-//   dispatch({
-//     type: LOGIN_USER_SUCCESS,
-//     payload: user
-//   });
-//
-//   Actions.main();
-// };
+const loginUserFail = (dispatch) => {
+  dispatch({ type: LOGIN_USER_FAIL });
+};
+
+const loginUserSuccess = (dispatch, user) => {
+  dispatch({
+    type: LOGIN_USER_SUCCESS,
+    payload: user
+  });
+
+  Actions.main();
+};

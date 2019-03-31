@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux'
-import { emailChanged, passwordChanged} from './actions';
+import { emailChanged, passwordChanged, loginUser} from './actions';
 import Card from './common/Card';
 import CardSection from './common/CardSection';
  import Input from './common/Input';
@@ -9,6 +9,7 @@ import CardSection from './common/CardSection';
  import Spinner from './common/Spinner';
 
 class LoginForm extends Component {
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -60,7 +61,9 @@ class LoginForm extends Component {
        <Text style={styles.errorTextStyle}>
          {this.props.error}
        </Text>
-
+       <Text style={styles.errorTextStyle}>
+       {this.props.error}
+       </Text>
        <CardSection>
          {this.renderButton()}
        </CardSection>
@@ -79,7 +82,9 @@ const styles = {
 
 const mapStateToProps = state => {
   return {
-    email: state.auth.email
+    email: state.auth.email,
+    password: state.auth.password,
+    error: state.auth.error
   }
 }
-export default connect(mapStateToProps, {emailChanged, passwordChanged} )(LoginForm);
+export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser} )(LoginForm);

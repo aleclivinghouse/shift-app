@@ -13,6 +13,9 @@ import CardSection from './common';
 import Header from './common';
 import Spinner from './common';
 import LoginForm from './LoginForm';
+import EmployeeList from './EmployeeList';
+import Router from './Router';
+console.log('this is the router', Router);
 
 class App extends React.Component {
   componentWillMount(){
@@ -30,9 +33,8 @@ class App extends React.Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <View>
-          <Text>Hello </Text>
-          <LoginForm />
+        <View style={{flex: 1}}>
+          <Router />
         </View>
       </Provider>
     );
