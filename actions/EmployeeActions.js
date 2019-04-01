@@ -20,19 +20,24 @@ export const employeeCreate = ({name, phone, shift}) => {
   return (dispatch) => {
     const uid = firebase.auth().currentUser.uid;
     const firestore = firebase.firestore();
-    const userRef = firestore.collection('users').doc(uid);
+    const userRef = firestore.collection('users').doc(uid)
     userRef.collection('employees').doc().set({name, phone, shift})
     .then(() => Actions.employeeList())
   }
 }
 
-// export const employeeSave = ({name, phone, shift, uid}) => {
-//   const userId = firebase.auth().currentUser.uid;
-//   const firestore = firebase.firestore();
-//   const userRef = firestore.collection('users').doc(userId);
-//   let theQuery = userRef.collection('employees').where("uid","==" {})
-//   console.log(theQuery);
-// }
+export const employeeSave = (name, phone, shift, id) => {
+  console.log('this is the name in action', name);
+  console.log('this is the id in action', id);
+  console.log('this is the phone in action', phone);
+  return (dispatch) => {
+  const userId = firebase.auth().currentUser.uid;
+  const firestore = firebase.firestore();
+  const userRef = firestore.collection('users').doc(userId);
+  userRef.collection('employees').doc(id).set({name: name, phone: phone, shift: shift})
+  .then(() => Actions.employeeList())
+  }
+}
 
 
 

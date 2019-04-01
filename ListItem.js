@@ -16,10 +16,10 @@ class ListItem extends Component {
         <View style={{flex: 1}}>
           <CardSection>
             <Text style={styles.titleStyle}>
-              {this.props.name}
+              {this.props.employee.data.name}
             </Text>
             <Text style={styles.titleStyle}>
-              {this.props.phone}
+              {this.props.employee.data.phone}
             </Text>
           </CardSection>
         </View>

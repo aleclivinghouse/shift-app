@@ -21,9 +21,8 @@ class EmployeeList extends Component{
       <View style={{flex: 1}}>
         {
           this.props.employees.map((item, index) => {
-            console.log('these ate the items', item.data.name);
           return (
-            <ListItem name={item.data.name} id={item.id}/>
+            <ListItem employee={item}/>
           )})
         }
       </View>
@@ -32,7 +31,6 @@ class EmployeeList extends Component{
 }
 
 const mapStateToProps = state => {
-  console.log('here is the state in mstp', state.employee.employees);
   return {
     employees: state.employee.employees
   }
