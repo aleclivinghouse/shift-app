@@ -6,7 +6,8 @@ import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
   EMPLOYEES_FETCH_SUCCESS,
-  EMPLOYEE_SAVE_SUCCESS
+  EMPLOYEE_SAVE_SUCCESS,
+  EMPLOYEE_DELETE
 } from './types';
 
 export const employeeUpdate = ({ prop, value }) => {
@@ -27,15 +28,23 @@ export const employeeCreate = ({name, phone, shift}) => {
 }
 
 export const employeeSave = (name, phone, shift, id) => {
-  console.log('this is the name in action', name);
-  console.log('this is the id in action', id);
-  console.log('this is the phone in action', phone);
   return (dispatch) => {
   const userId = firebase.auth().currentUser.uid;
   const firestore = firebase.firestore();
   const userRef = firestore.collection('users').doc(userId);
   userRef.collection('employees').doc(id).set({name: name, phone: phone, shift: shift})
   .then(() => Actions.employeeList())
+  }
+}
+
+export const employeeDelete = (id) => {
+  return (dispatch) => {
+    dispatch({type: EMPLOYEE_DELETE, payload: id});
+    const userId = firebase.auth().currentUser.uid;
+    const firestore = firebase.firestore();
+    const userRef = firestore.collection('users').doc(userId)
+    userRef.collection('employees').doc(id).delete()
+    .then(() => Actions.employeeList())
   }
 }
 
