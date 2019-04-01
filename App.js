@@ -4,7 +4,8 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
 import ReduxThunk from 'redux-thunk';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 import Chart from './common';
 import Button from './common';
 import Input from './common';
@@ -28,6 +29,7 @@ class App extends React.Component {
     messagingSenderId: "958329089427"
   };
   firebase.initializeApp(config);
+  firebase.firestore();
   }
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));

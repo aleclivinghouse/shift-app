@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 import { connect } from 'react-redux';
-import  {employeeUpdate} from './actions';
+import  {employeeUpdate, employeeCreate} from './actions';
 import Card from './common/Card';
 import CardSection from './common/CardSection';
 import Input from './common/Input';
-console.log(employeeUpdate);
+import Button from './common/Button';
 
 class EmployeeForm extends Component {
+  onButtonPress(){
+    const {name, phone, shift}  = this.props;
+    this.props.employeeCreate({name, phone, shift: shift || 'Monday'});
+
+  }
   render() {
     return (
       <View>
@@ -63,4 +70,4 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeForm);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate})(EmployeeForm);
